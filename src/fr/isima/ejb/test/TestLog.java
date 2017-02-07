@@ -7,8 +7,8 @@ import org.junit.Test;
 
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
+import fr.isima.ejb.log.Logger;
 import fr.isima.ejb.service.GoodService;
-import fr.isima.ejb.service.Logger;
 
 public class TestLog {
 	

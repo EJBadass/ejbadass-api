@@ -2,6 +2,7 @@ package fr.isima.ejb.service;
 
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.annotation.Transactional;
+import fr.isima.ejb.transaction.TransactionType;
 
 public class TransacService {
 	@Inject

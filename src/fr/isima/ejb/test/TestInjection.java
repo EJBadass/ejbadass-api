@@ -9,9 +9,10 @@ import org.junit.Test;
 
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
-import fr.isima.ejb.service.BadService;
 import fr.isima.ejb.service.GoodService;
 import fr.isima.ejb.service.IService;
+import fr.isima.ejb.service.IService2;
+import fr.isima.ejb.service.JokerService;
 
 public class TestInjection {
 	
@@ -21,6 +22,10 @@ public class TestInjection {
 	public GoodService goodServiceSingleton1;
 	@Inject
 	public GoodService goodServiceSingleton2;
+	@Inject
+	public IService2 jokerService1;
+	@Inject
+	public IService2 jokerService2;
 	
 	@Before
 	public void prepare() throws Exception {
@@ -38,8 +43,8 @@ public class TestInjection {
 	public void testSecondLevelInjection() {
 		assertNotNull(service);
 		assertTrue(service instanceof GoodService);
-		assertTrue(service.getJokerService() instanceof BadService);
-		assertEquals("BAD", service.getJokerService().giveMeAHand());
+		assertTrue(service.getJokerService() instanceof JokerService);
+		assertEquals("Joker", service.getJokerService().giveMeAHand());
 	}
 	
 	@Test
@@ -47,6 +52,13 @@ public class TestInjection {
 		assertNotNull(goodServiceSingleton1);
 		assertNotNull(goodServiceSingleton2);
 		assertTrue(goodServiceSingleton1 == goodServiceSingleton2);
+	}
+	
+	@Test
+	public void testNotSingleton() {
+		assertNotNull(goodServiceSingleton1);
+		assertNotNull(goodServiceSingleton2);
+		assertTrue(jokerService1 != jokerService2);
 	}
 
 }

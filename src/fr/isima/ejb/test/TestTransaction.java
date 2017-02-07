@@ -34,6 +34,7 @@ public class TestTransaction {
 	}
 	
 	// begin & rollback
+	@Test
 	public void testBeginRollback() {
 		long 	b = Transaction.numberOfBegin,
 				r = Transaction.numberOfCommit,
@@ -46,7 +47,7 @@ public class TestTransaction {
 	}
 	
 	// tester service imbriqués et seconde transaction
-
+	@Test
 	public void testRequiresRequires() {
 		long 	b = Transaction.numberOfBegin,
 				r = Transaction.numberOfCommit,
@@ -60,6 +61,7 @@ public class TestTransaction {
 	
 
 	// begin & rollback
+	@Test
 	public void testRequiresRequiresNew() {
 		long 	b = Transaction.numberOfBegin,
 				r = Transaction.numberOfCommit,

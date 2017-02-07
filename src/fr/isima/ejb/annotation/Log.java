@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import fr.isima.ejb.service.LogInterceptor;
+import fr.isima.ejb.log.LogInterceptor;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

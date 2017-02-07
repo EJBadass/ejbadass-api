@@ -10,7 +10,7 @@ import fr.isima.ejb.annotation.Singleton;
 public class GoodService implements IService {
 	
 	@Inject
-	IService joker;
+	IService2 joker;
 	
 	@Override
 	public String giveMeAHand() {
@@ -18,7 +18,7 @@ public class GoodService implements IService {
 	}
 
 	@Override
-	public IService getJokerService() {
+	public IService2 getJokerService() {
 		return joker;
 	}
 

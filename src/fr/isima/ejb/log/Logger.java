@@ -1,4 +1,4 @@
-package fr.isima.ejb.service;
+package fr.isima.ejb.log;
 
 import java.util.ArrayList;
 import java.util.List;

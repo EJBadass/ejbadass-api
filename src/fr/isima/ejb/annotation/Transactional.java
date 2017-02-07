@@ -5,7 +5,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import fr.isima.ejb.service.TransactionType;
+import fr.isima.ejb.transaction.TransactionType;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

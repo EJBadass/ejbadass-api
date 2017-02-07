@@ -1,10 +1,12 @@
 package fr.isima.ejb.service;
 
+import fr.isima.ejb.annotation.Prefered;
 
-public class BadService implements IService {
+@Prefered
+public class JokerService implements IService2 {
 	@Override
 	public String giveMeAHand() {
-		return "BAD";
+		return "Joker";
 	}
 
 	@Override
