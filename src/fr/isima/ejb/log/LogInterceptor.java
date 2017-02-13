@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.annotation.Log;
+import fr.isima.ejb.injection.IInterceptor;
 
 public class LogInterceptor implements IInterceptor {
 

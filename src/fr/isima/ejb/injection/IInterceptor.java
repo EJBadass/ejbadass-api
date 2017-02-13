@@ -1,4 +1,4 @@
-package fr.isima.ejb.log;
+package fr.isima.ejb.injection;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

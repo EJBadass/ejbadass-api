@@ -3,9 +3,6 @@ package fr.isima.ejb.log;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.isima.ejb.annotation.Singleton;
-
-@Singleton
 public class Logger implements ILogger {
 
 	private List<String> logs = new ArrayList<>();

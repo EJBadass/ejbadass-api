@@ -3,7 +3,7 @@ package fr.isima.ejb.transaction;
 import java.lang.reflect.Method;
 
 import fr.isima.ejb.annotation.Inject;
-import fr.isima.ejb.log.IInterceptor;
+import fr.isima.ejb.injection.IInterceptor;
 
 public class TransactionInterceptor implements IInterceptor {
 	
