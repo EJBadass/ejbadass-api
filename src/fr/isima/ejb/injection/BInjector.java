@@ -1,13 +1,16 @@
 package fr.isima.ejb.injection;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
 import org.reflections.Reflections;
 
+import fr.isima.ejb.annotation.Behaviour;
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.annotation.Prefered;
 import fr.isima.ejb.annotation.Singleton;
@@ -19,11 +22,11 @@ import fr.isima.ejb.log.IInterceptor;
 public class BInjector {
 
 	private static HashMap<Class<?>, Object> singletons;
-	private static HashMap<Class<? extends IInterceptor>, Object> interceptors;
+	private static BInvocationHandler invocationHandler;
 	
 	static {
 		singletons = new HashMap<>();
-		interceptors = new HashMap<>();
+		invocationHandler = new BInvocationHandler();
 	}
 
 	public static void makeAllInjection(Object o) throws NoImplementationFoundException, MultipleImplementationFoundException, MultiplePreferedImplementationFoundException {
@@ -35,12 +38,9 @@ public class BInjector {
 			if (field.isAnnotationPresent(Inject.class)) {
 				try {
 					Object value;
-					value = inject(field);
+					value = applyBehaviour(field.getType());
 					field.setAccessible(true);
 					field.set(o, value);
-				} catch (InstantiationException e) {
-					e.printStackTrace();
-					throw new NoImplementationFoundException();
 				} catch (IllegalArgumentException e) {
 					e.printStackTrace();
 					throw new NoImplementationFoundException();
@@ -52,12 +52,12 @@ public class BInjector {
 		}
 	}
 	
-	private static Object inject(Field f) throws InstantiationException, IllegalAccessException, NoImplementationFoundException, MultipleImplementationFoundException, MultiplePreferedImplementationFoundException {
+	private static Object inject(Class<?> f) throws InstantiationException, IllegalAccessException, NoImplementationFoundException, MultipleImplementationFoundException, MultiplePreferedImplementationFoundException {
 		Object res = null;
 		Reflections reflections = new Reflections("fr.isima");
 		
-		if(f.getType().isInterface()) {
-			Set<?> possibilities = reflections.getSubTypesOf(f.getType());
+		if(f.isInterface()) {
+			Set<?> possibilities = reflections.getSubTypesOf(f);
 			int nbPreferred = 0;
 			Iterator<?> iterator = possibilities.iterator();
 			Class<?> firstPrefered = null;
@@ -84,7 +84,7 @@ public class BInjector {
 				throw new MultiplePreferedImplementationFoundException();
 			}
 		} else {
-			res = instantiate(f.getType());			
+			res = instantiate(f);			
 		}
 		
 		return res;
@@ -110,6 +110,36 @@ public class BInjector {
 			makeAllInjection(instance);
 		}
 		return singletons.get(cls);
+	}
+	
+	private static Object applyBehaviour(Class<?> cls) {
+		Object instance = null;
+		Class<?>[] classes = null;
+
+		for(Method m : cls.getMethods()) {
+			for (Annotation a : m.getAnnotations()) {
+				Behaviour[] ans = a.annotationType().getAnnotationsByType(Behaviour.class);
+				classes = new Class<?>[ans.length];
+				int i = 0;
+				for(Behaviour b : ans) {
+					classes[i++] = b.interceptor();
+				}
+			}
+		}
+		
+		if(classes!=null) {
+			for (Class<?> class1 : classes) {
+				System.out.println("DEBUG " + class1.getTypeName());
+			}
+		}
+		
+		instance = Proxy.newProxyInstance(
+				cls.getClassLoader(),
+				new Class<?>[] {cls},
+				invocationHandler
+				);
+		
+		return instance;
 	}
 	
 }

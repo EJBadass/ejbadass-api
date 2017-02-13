@@ -6,7 +6,7 @@ import java.util.List;
 import fr.isima.ejb.annotation.Singleton;
 
 @Singleton
-public class Logger {
+public class Logger implements ILogger {
 
 	private List<String> logs = new ArrayList<>();
 	
