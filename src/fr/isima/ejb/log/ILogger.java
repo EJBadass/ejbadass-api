@@ -9,4 +9,6 @@ public interface ILogger {
 	
 	public void log(String string);
 
+	public String getAll();
+
 }

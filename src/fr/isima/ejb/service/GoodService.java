@@ -7,7 +7,7 @@ import fr.isima.ejb.annotation.Singleton;
 
 @Singleton
 @Prefered
-public class GoodService implements IService {
+public class GoodService implements IService, ILogService {
 	
 	@Inject
 	IService2 joker;
@@ -24,7 +24,7 @@ public class GoodService implements IService {
 
 	@Log
 	public void loggedMethod() {
-		// TODO Auto-generated method stub
+		
 	}
 	
 }

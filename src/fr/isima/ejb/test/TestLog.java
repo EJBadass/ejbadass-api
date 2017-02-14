@@ -8,7 +8,7 @@ import org.junit.Test;
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
 import fr.isima.ejb.log.ILogger;
-import fr.isima.ejb.service.GoodService;
+import fr.isima.ejb.service.ILogService;
 
 public class TestLog {
 	
@@ -16,7 +16,7 @@ public class TestLog {
 	ILogger logger;
 	
 	@Inject
-	GoodService service;
+	ILogService service;
 	
 	@Before
 	public void prepare() throws Exception {
@@ -26,7 +26,7 @@ public class TestLog {
 	@Test
 	public void test() {
 		service.loggedMethod();
-		assertTrue(logger.contains("GoodService logged."));
+		assertTrue(logger.contains("public abstract void fr.isima.ejb.service.ILogService.loggedMethod()"));
 	}
 
 }
