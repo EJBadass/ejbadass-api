@@ -16,8 +16,8 @@ public class TransacService implements ITransacService {
 	 */
 	@Override
 	@Transactional(value=TransactionType.REQUIRES)
-	public void transactionalMethod(int i) {
-		
+	public void transactionalMethod(int i) throws Exception {
+		if(i==0) throw new Exception();
 	}
 	
 	/* (non-Javadoc)
@@ -43,7 +43,7 @@ public class TransacService implements ITransacService {
 	 */
 	@Override
 	@Transactional(value=TransactionType.REQUIRES)
-	public void transactionalMethod4() {
+	public void transactionalMethod4() throws Exception {
 		service2.transactionalMethod(1);
 	}
 

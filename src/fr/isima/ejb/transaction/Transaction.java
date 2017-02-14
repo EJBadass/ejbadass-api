@@ -21,7 +21,7 @@ public class Transaction implements ITransaction {
 
 	@Override
 	public void rollback() {
-		numberOfCommit++;
+		numberOfRollback++;
 	}
 
 }

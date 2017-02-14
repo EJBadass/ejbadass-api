@@ -29,36 +29,4 @@ public class BInjector {
 			}
 		}
 	}
-	
-	/*
-	private static Object applyBehaviour(Class<?> cls) {
-		Object instance = null;
-		Class<?>[] classes = null;
-
-		for(Method m : cls.getMethods()) {
-			for (Annotation a : m.getAnnotations()) {
-				Behaviour[] ans = a.annotationType().getAnnotationsByType(Behaviour.class);
-				classes = new Class<?>[ans.length];
-				int i = 0;
-				for(Behaviour b : ans) {
-					classes[i++] = b.interceptor();
-				}
-			}
-		}
-		
-		if(classes!=null) {
-			for (Class<?> class1 : classes) {
-				System.out.println("DEBUG " + class1.getTypeName());
-			}
-		}
-		
-		instance = Proxy.newProxyInstance(
-				cls.getClassLoader(),
-				new Class<?>[] {cls},
-				invocationHandler
-				);
-		
-		return instance;
-	}
-	*/
 }

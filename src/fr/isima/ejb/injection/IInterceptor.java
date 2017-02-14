@@ -1,8 +1,10 @@
 package fr.isima.ejb.injection;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public interface IInterceptor {
-	public void before(Object object, Method method, Object[] args);
-	public void after(Object object, Method method, Object[] args);
+	public Object proceed(Object object, Method method, Object[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException;
+	public IInterceptor next();
+	public void setNext(IInterceptor next);
 }

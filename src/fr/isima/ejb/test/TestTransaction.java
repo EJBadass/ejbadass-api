@@ -22,10 +22,10 @@ public class TestTransaction {
 	
 	// begin & commit
 	@Test
-	public void testBeginCommit() {
+	public void testBeginCommit() throws Exception {
 		long 	b = Transaction.numberOfBegin,
-				r = Transaction.numberOfCommit,
-				c = Transaction.numberOfRollback;
+				c = Transaction.numberOfCommit,
+				r = Transaction.numberOfRollback;
 		assertTrue(service != null);
 		service.transactionalMethod(1);
 		assertTrue(Transaction.numberOfBegin==b+1);
@@ -35,10 +35,10 @@ public class TestTransaction {
 	
 	// begin & rollback
 	@Test
-	public void testBeginRollback() {
+	public void testBeginRollback() throws Exception {
 		long 	b = Transaction.numberOfBegin,
-				r = Transaction.numberOfCommit,
-				c = Transaction.numberOfRollback;
+				c = Transaction.numberOfCommit,
+				r = Transaction.numberOfRollback;
 		assertTrue(service != null);
 		service.transactionalMethod(0);
 		assertTrue(Transaction.numberOfBegin==b+1);
@@ -48,10 +48,10 @@ public class TestTransaction {
 	
 	// tester service imbriqués et seconde transaction
 	@Test
-	public void testRequiresRequires() {
+	public void testRequiresRequires() throws Exception {
 		long 	b = Transaction.numberOfBegin,
-				r = Transaction.numberOfCommit,
-				c = Transaction.numberOfRollback;
+				c = Transaction.numberOfCommit,
+				r = Transaction.numberOfRollback;
 		assertTrue(service != null);
 		service.transactionalMethod4();
 		assertTrue(Transaction.numberOfBegin==b+1);
@@ -64,8 +64,8 @@ public class TestTransaction {
 	@Test
 	public void testRequiresRequiresNew() {
 		long 	b = Transaction.numberOfBegin,
-				r = Transaction.numberOfCommit,
-				c = Transaction.numberOfRollback;
+				c = Transaction.numberOfCommit,
+				r = Transaction.numberOfRollback;
 		assertTrue(service != null);
 		service.transactionalMethod2();
 		assertTrue(Transaction.numberOfBegin==b+2);

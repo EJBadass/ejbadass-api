@@ -29,17 +29,10 @@ public class BInvocationHandler implements InvocationHandler {
 					interceptors.add((IInterceptor) BObjectFactory.createInstance(intClass));
 				}
 				
-				// before
-				for (IInterceptor iInterceptor : interceptors) {
-					iInterceptor.before(getInstance(), method, args);
-				}
-				// method execution
-				result = method.invoke(getInstance(), args);
-				// after
-				for (IInterceptor iInterceptor : interceptors) {
-					iInterceptor.after(getInstance(), method, args);
-				}
-
+				BInterceptorChain respChain = (BInterceptorChain) BObjectFactory.createInstance(BInterceptorChain.class);
+				respChain.buildChain(interceptors);
+				
+				result = respChain.proceed(getInstance(), method, args);
 			}
 		}
 		return result;

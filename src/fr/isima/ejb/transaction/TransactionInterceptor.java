@@ -1,5 +1,6 @@
 package fr.isima.ejb.transaction;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import fr.isima.ejb.annotation.Inject;
@@ -9,17 +10,36 @@ public class TransactionInterceptor implements IInterceptor {
 	
 	@Inject
 	ITransaction transaction;
+	@Inject
+	ITransactionManager transactionManager;
+	
+	private IInterceptor next;
 
 	@Override
-	public void before(Object object, Method method, Object[] args) {
-		// TODO Auto-generated method stub
-
+	public Object proceed(Object object, Method method, Object[] args)
+			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		Object result = null;
+		
+		transaction.begin();
+		
+		try {
+			result = next().proceed(object, method, args);
+			transaction.commit();
+		} catch (Exception e) {
+			transaction.rollback();
+		}
+		
+		return result;
 	}
 
 	@Override
-	public void after(Object object, Method method, Object[] args) {
-		// TODO Auto-generated method stub
+	public IInterceptor next() {
+		return this.next;
+	}
 
+	@Override
+	public void setNext(IInterceptor next) {
+		this.next = next;
 	}
 
 }

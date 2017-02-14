@@ -1,5 +1,6 @@
 package fr.isima.ejb.log;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import fr.isima.ejb.annotation.Inject;
@@ -10,14 +11,25 @@ public class LogInterceptor implements IInterceptor {
 	@Inject
 	ILogger logger;
 	
+	private IInterceptor next;
+
 	@Override
-	public void before(Object object, Method method, Object[] args) {
+	public Object proceed(Object object, Method method, Object[] args)
+			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		logger.log(method.toString());
+		Object result = next().proceed(object, method, args);
+		logger.log(method.toString());
+		return result;
 	}
 
 	@Override
-	public void after(Object object, Method method, Object[] args) {
-		logger.log(method.toString());
+	public IInterceptor next() {
+		return this.next;
+	}
+
+	@Override
+	public void setNext(IInterceptor next) {
+		this.next = next;
 	}
 
 }
