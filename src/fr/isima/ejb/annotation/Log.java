@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 import fr.isima.ejb.log.LogInterceptor;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD,ElementType.TYPE})
 @Behaviour(interceptor=LogInterceptor.class)
 public @interface Log {
 

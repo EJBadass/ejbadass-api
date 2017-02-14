@@ -3,11 +3,14 @@ package fr.isima.ejb.test;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.lang.reflect.Proxy;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
+import fr.isima.ejb.injection.BInvocationHandler;
 import fr.isima.ejb.service.IService;
 import fr.isima.ejb.service.IService2;
 
@@ -31,7 +34,12 @@ public class TestSingleton {
 	public void testAtSingleton() {
 		assertNotNull(goodServiceSingleton1);
 		assertNotNull(goodServiceSingleton2);
-		//TODO assertTrue(goodServiceSingleton1 == goodServiceSingleton2);
+		assertTrue(goodServiceSingleton1 instanceof Proxy);
+		assertTrue(((BInvocationHandler)Proxy.getInvocationHandler(goodServiceSingleton1)).getInstance()==null);
+		assertTrue(goodServiceSingleton2 instanceof Proxy);
+		assertTrue(((BInvocationHandler)Proxy.getInvocationHandler(goodServiceSingleton2)).getInstance()==null);
+		assertTrue(((BInvocationHandler)Proxy.getInvocationHandler(goodServiceSingleton1)).getInstance() 
+					== ((BInvocationHandler)Proxy.getInvocationHandler(goodServiceSingleton2)).getInstance());
 	}
 	
 	@Test

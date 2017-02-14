@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class BInvocationHandler implements InvocationHandler {
+	
+	private Object instance = null;
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
@@ -15,8 +17,9 @@ public class BInvocationHandler implements InvocationHandler {
 		Object result = null;							// result of method
 		
 		if(cls!=null) {
-			Object obj = BObjectFactory.createInstance(cls);	// create object
-			if(obj!=null) {
+			if(getInstance()==null)
+				setInstance(BObjectFactory.createInstance(cls));	// create object
+			if(getInstance()!=null) {
 				
 				// check behaviour and get interceptors
 				HashSet<Class<?>> interceptorClasses = BBehaviourManager.check(cls, method); 
@@ -28,18 +31,26 @@ public class BInvocationHandler implements InvocationHandler {
 				
 				// before
 				for (IInterceptor iInterceptor : interceptors) {
-					iInterceptor.before(obj, method, args);
+					iInterceptor.before(getInstance(), method, args);
 				}
 				// method execution
-				result = method.invoke(obj, args);
+				result = method.invoke(getInstance(), args);
 				// after
 				for (IInterceptor iInterceptor : interceptors) {
-					iInterceptor.before(obj, method, args);
+					iInterceptor.after(getInstance(), method, args);
 				}
 
 			}
 		}
 		return result;
+	}
+
+	public Object getInstance() {
+		return instance;
+	}
+
+	public void setInstance(Object instance) {
+		this.instance = instance;
 	}
 
 }

@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
+import fr.isima.ejb.injection.BInvocationHandler;
+import fr.isima.ejb.service.GoodService;
 import fr.isima.ejb.service.IService;
 
 public class TestInjection {
@@ -28,8 +30,9 @@ public class TestInjection {
 		assertNotNull(service);
 		assertTrue(Proxy.isProxyClass(service.getClass()));
 		assertTrue(service instanceof Proxy);
-		//TODO assertTrue(service instanceof GoodService);
+		assertTrue(((BInvocationHandler)Proxy.getInvocationHandler(service)).getInstance()==null);
 		assertEquals("GOOD", service.giveMeAHand());
+		assertTrue(((BInvocationHandler)Proxy.getInvocationHandler(service)).getInstance() instanceof GoodService);
 	}
 
 }

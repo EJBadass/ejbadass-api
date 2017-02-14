@@ -1,9 +1,8 @@
 package fr.isima.ejb.service;
 
-public class EntityManager {
+public class EntityManager implements IEntityManager {
 
 	public Object find(Class<?> classe, String string) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
