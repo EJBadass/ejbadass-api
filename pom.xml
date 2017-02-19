@@ -1,9 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>EJBadass</groupId>
-  <artifactId>EJBadass</artifactId>
-  <name>EJBadass API</name>
+  <groupId>ejbadass</groupId>
+  <artifactId>ejbadass-api</artifactId>
+  <version>1.0.0</version>
   <description>Strong implementation of an EJB container.</description>
+  <properties>
+    <jdk.version>1.8</jdk.version>
+  </properties>
+  <packaging>jar</packaging>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -11,12 +15,13 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.5.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+		  <source>${jdk.version}</source>
+		  <target>${jdk.version}</target>
         </configuration>
       </plugin>
     </plugins>
   </build>
+  <name>EJBadass API</name>
   <dependencies>
   	<dependency>
   		<groupId>org.reflections</groupId>
@@ -28,6 +33,5 @@
   	<name>EJBadass</name>
   	<url>https://github.com/EJBadass</url>
   </organization>
-  <version>1.0.0</version>
   <url>https://github.com/EJBadass/ejbadass-api</url>
 </project>
