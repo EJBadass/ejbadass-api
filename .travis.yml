@@ -1,26 +1,21 @@
 language: java
-
 sudo: false
-
 jdk:
- - oraclejdk8
- 
+- oraclejdk8
 script:
- - mvn clean verify install
- 
-after_script:
- - ls -lha
- - pwd
- - cp target/ejbadass-api* ./ejbadass-api.jar
- - cp target/maven-archiver/pom.properties .
- 
+- mvn clean verify install
+after_success:
+- ls -lha
+- pwd
+- cp target/ejbadass-api* ./ejbadass-api.jar
+- cp target/maven-archiver/pom.properties .
 deploy:
   provider: releases
-  file:
-    - "ejbadass-api.jar"
-    - "pom.properties"
-  skip_cleanup: true
   api_key:
-    secure: mTsN/cbIhI2WyJAh8ZiVqcdJLuda3grSZamglFHP0rPeSf33EWvX+6RB8sZuxnYrymxABOxMuXCekZZVqAN4maUFpddSc2uX3zUGh4zHWSOkl06rYSGwIS8nT0e2GUjAyQdSJ/ISoGf+tuau/dh/LaghHAa+pCwzxcqS/37mTNspkBoC9dRi4N9hg5AqJsjm89OCsr9wBoPipzPj6ywE47U+xln/+zhfSgkseWAdpFg4obV1sJR6Bxr/l+mDGZ9ozla+o/xvUOTTDIQrAqmLck45YPriuTjSsny+N5R6anNTMJiX9WjXNDvdShNXU2KOljodRE5YSA8ot4xr02z1bih9+o0i8SXZ5g/lDme5RLo44TBI9Kt9MmghmReuX/+SaB+NId45XCoqsIo667avBnzsXK2CxuzlGCAkAxncE81zIxUxbN0nXSpyIUYSOjxZJLz2AhdTZsF5OWy1Z7VH96BV6UatUh7EqiyOpcXaDHa1RDIH8X0OoK9rUWa4BuHM6CSWRV+olgblZaXT8AZ5thb7j9RyZZIwkHJ9v9r3u3sLaiBU1TAB2kl6/onVzJEFAB7AITi11ZzBbIDZ5j9HbPfa50p83bxInD6WZc72Q1RIsajVDA1V+n2IwhKaTjo/3lMpAlJMmcCwPJ1Td4RXWG5q6nSH0HZH7E4ZABc5aLQ=
+    secure: vxf38JboNsmqaEaz9oqs3bVGo9EvimGW/nKqVpBNhkCi5Dvy5dTgvO2UbZhqg+mUUnQv1VQ70nOO5UqUCJUR2rXE5dLG0QGG8zj/n4QgdAtvT2lyadAWbtcgT2ipTCNFsGdD9ne9AoT+7WpEHsSTw0dSnGtx974itX3COnldV7fdt1j2/P3GptWI7vK9g7OjfugWMdkOZJRqc9oYR47+yWhnttlZRfxMVkql17e9j65TuhAwlBl7GRnUgRyeCo/dukTM3t9Qm66m7unhGRTPHM0fsDRJhqzffu/tlQGDgQIp/RxQHC8rTpEXRka11DSRV0jATzRbCAuDpAQyiZZQu4nrisRpCbc/B9I2/X+uEnXOTF7XRJBbf/BQmmcdDTQydoQEzNBXuacBc43kPznI/KndLx9wqGsQeJY+ChN+IaLRO1+LIeueHOdquoAf7eUNoxehGvfJi9dYwO3y6Yh+i6K6iZ8xsfXwjX9RII7xLg8ET2y1DHzh/afrCgUne3vJUEnNOb5Y/UIQgf/Fn+y4iheJmmSIfNiVdBKk7zVj6E+h1n/bb+ufg1cMzYC8AM4L5bPcAMD3d+VsjCQPx4b49pXORl2mn1h6/k5L024lRycl2D8OeL+/SL15s3JfJ3NBWLO3UN10ZF//E6xdhFaUjYfRp4kHrdlFar+3D71scRQ=
+  file: 
+   - ejbadass-api.jar
+   - pom.properties
+  overwrite: true
   on:
     repo: EJBadass/ejbadass-api
