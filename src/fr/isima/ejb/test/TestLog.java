@@ -8,7 +8,7 @@ import org.junit.Test;
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
 import fr.isima.ejb.log.ILogger;
-import fr.isima.ejb.service.ILogService;
+import fr.isima.ejb.stub.interfaces.ILogService;
 
 public class TestLog {
 	
@@ -26,7 +26,7 @@ public class TestLog {
 	@Test
 	public void test() {
 		service.loggedMethod();
-		assertTrue(logger.contains("public abstract void fr.isima.ejb.service.ILogService.loggedMethod()"));
+		assertTrue(logger.contains("loggedMethod"));
 	}
 
 }

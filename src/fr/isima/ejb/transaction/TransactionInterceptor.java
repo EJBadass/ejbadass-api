@@ -7,9 +7,7 @@ import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.IInterceptor;
 
 public class TransactionInterceptor implements IInterceptor {
-	
-	@Inject
-	ITransaction transaction;
+
 	@Inject
 	ITransactionManager transactionManager;
 	
@@ -19,15 +17,24 @@ public class TransactionInterceptor implements IInterceptor {
 	public Object proceed(Object object, Method method, Object[] args)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		Object result = null;
+		boolean isRequired = ((Transactional)method.getDeclaredAnnotationsByType(Transactional.class)[0]).value() == TransactionType.REQUIRED;
+		ITransaction transaction = transactionManager.getTransaction(this, isRequired);
 		
-		transaction.begin();
+		if(transaction.isCaller(this))
+			transaction.begin();
 		
 		try {
 			result = next().proceed(object, method, args);
-			transaction.commit();
+			if(transaction.isCaller(this))
+				transaction.commit();
 		} catch (Exception e) {
+			if(!transaction.isCaller(this))
+				throw e;
 			transaction.rollback();
 		}
+		
+		if(transaction.isCaller(this))
+			transactionManager.close();
 		
 		return result;
 	}

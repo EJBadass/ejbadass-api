@@ -5,7 +5,7 @@ import org.junit.Test;
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.exception.MultiplePreferedImplementationFoundException;
 import fr.isima.ejb.injection.BInjector;
-import fr.isima.ejb.service.IMultiPreferedService;
+import fr.isima.ejb.stub.interfaces.IMultiPreferedService;
 
 public class TestMultiPrefered {
 

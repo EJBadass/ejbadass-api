@@ -1,18 +1,11 @@
 package fr.isima.ejb.transaction;
 
-import java.util.Stack;
+import fr.isima.ejb.injection.IInterceptor;
 
-public class ITransactionManager {
-	// see java thread local
-	private static final ThreadLocal<Stack<Transaction>> transactions = new ThreadLocal<Stack<Transaction>>() {
-		@Override
-        protected Stack<Transaction> initialValue()
-        {
-            return new Stack<Transaction>();
-        }
-	};
-	
-	
+public interface ITransactionManager {
+
+	public Transaction getTransaction(IInterceptor inter, boolean isRequired);
+	public void close();	
 	
 }
 

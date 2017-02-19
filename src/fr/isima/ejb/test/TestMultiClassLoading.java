@@ -5,7 +5,7 @@ import org.junit.Test;
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.exception.MultipleImplementationFoundException;
 import fr.isima.ejb.injection.BInjector;
-import fr.isima.ejb.service.IMultiService;
+import fr.isima.ejb.stub.interfaces.IMultiService;
 
 public class TestMultiClassLoading {
 	

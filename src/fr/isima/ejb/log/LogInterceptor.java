@@ -16,9 +16,9 @@ public class LogInterceptor implements IInterceptor {
 	@Override
 	public Object proceed(Object object, Method method, Object[] args)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		logger.log(method.toString());
+		logger.log(method.getName());
 		Object result = next().proceed(object, method, args);
-		logger.log(method.toString());
+		logger.log(method.getName());
 		return result;
 	}
 

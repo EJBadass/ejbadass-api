@@ -13,10 +13,10 @@ import org.junit.Test;
 import fr.isima.ejb.annotation.Inject;
 import fr.isima.ejb.injection.BInjector;
 import fr.isima.ejb.injection.BInvocationHandler;
-import fr.isima.ejb.service.GoodService;
-import fr.isima.ejb.service.IService;
-import fr.isima.ejb.service.IService2;
-import fr.isima.ejb.service.JokerService;
+import fr.isima.ejb.stub.implementations.GoodService;
+import fr.isima.ejb.stub.implementations.JokerService;
+import fr.isima.ejb.stub.interfaces.IService;
+import fr.isima.ejb.stub.interfaces.IService2;
 
 public class TestCascade {
 	
