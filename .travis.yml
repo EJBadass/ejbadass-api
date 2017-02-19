@@ -19,4 +19,4 @@ deploy:
   skip_cleanup: true
   on:
     repo: EJBadass/ejbadass-api
-    tags: true
+    tags: false
