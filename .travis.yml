@@ -5,8 +5,6 @@ jdk:
 script:
 - mvn clean verify install
 after_success:
-- ls -lha
-- pwd
 - cp target/ejbadass-api* ./ejbadass-api.jar
 - cp target/maven-archiver/pom.properties .
 deploy:
@@ -17,5 +15,6 @@ deploy:
    - ejbadass-api.jar
    - pom.properties
   overwrite: true
+  skip_cleanup: true
   on:
     repo: EJBadass/ejbadass-api
