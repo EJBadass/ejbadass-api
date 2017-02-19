@@ -1,13 +1,11 @@
-package fr.isima.ejb.annotation;
+package fr.isima.ejbadass.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-import fr.isima.ejb.injection.IInterceptor;
+import fr.isima.ejbadass.plugable.IInterceptor;
 
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Behaviour {
-
 	Class<? extends IInterceptor> interceptor();
-
 }

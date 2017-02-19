@@ -1,10 +1,10 @@
-package fr.isima.ejb.injection;
+package fr.isima.ejbadass.plugable;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 
-import fr.isima.ejb.annotation.Behaviour;
+import fr.isima.ejbadass.annotation.Behaviour;
 
 public class BBehaviourManager {
 

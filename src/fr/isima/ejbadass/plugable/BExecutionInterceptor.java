@@ -1,10 +1,9 @@
-package fr.isima.ejb.injection;
+package fr.isima.ejbadass.plugable;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class BExecutionInterceptor implements IInterceptor {
-
 	@Override
 	public Object proceed(Object object, Method method, Object[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 		return method.invoke(object, args);
@@ -19,5 +18,4 @@ public class BExecutionInterceptor implements IInterceptor {
 	public void setNext(IInterceptor next) {
 		
 	}
-
 }

@@ -1,9 +1,12 @@
-package fr.isima.ejb.injection;
+package fr.isima.ejbadass.plugable;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.HashSet;
 import java.util.Set;
+
+import fr.isima.ejbadass.injection.BClassFinder;
+import fr.isima.ejbadass.injection.BObjectFactory;
 
 public class BInvocationHandler implements InvocationHandler {
 	

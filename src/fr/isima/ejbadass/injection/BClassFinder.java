@@ -1,20 +1,20 @@
-package fr.isima.ejb.injection;
+package fr.isima.ejbadass.injection;
 
 import java.util.Iterator;
 import java.util.Set;
 
 import org.reflections.Reflections;
 
-import fr.isima.ejb.annotation.Prefered;
-import fr.isima.ejb.exception.MultipleImplementationFoundException;
-import fr.isima.ejb.exception.MultiplePreferedImplementationFoundException;
-import fr.isima.ejb.exception.NoImplementationFoundException;
+import fr.isima.ejbadass.annotation.Prefered;
+import fr.isima.ejbadass.exception.MultipleImplementationFoundException;
+import fr.isima.ejbadass.exception.MultiplePreferedImplementationFoundException;
+import fr.isima.ejbadass.exception.NoImplementationFoundException;
 
 public class BClassFinder {
 	
 	public static Class<?> find(Class<?> f) throws InstantiationException, IllegalAccessException, NoImplementationFoundException, MultipleImplementationFoundException, MultiplePreferedImplementationFoundException {
 		Class<?> res = null;
-		Reflections reflections = new Reflections("fr.isima");
+		Reflections reflections = new Reflections("");
 		
 		if(f.isInterface()) {
 			Set<?> possibilities = reflections.getSubTypesOf(f);
@@ -46,7 +46,6 @@ public class BClassFinder {
 		} else {
 			res = f;			
 		}
-		
 		return res;
 	}
 	

@@ -1,10 +1,10 @@
-package fr.isima.ejb.injection;
+package fr.isima.ejbadass.injection;
 
 import java.util.HashMap;
 
-import fr.isima.ejb.exception.MultipleImplementationFoundException;
-import fr.isima.ejb.exception.MultiplePreferedImplementationFoundException;
-import fr.isima.ejb.exception.NoImplementationFoundException;
+import fr.isima.ejbadass.exception.MultipleImplementationFoundException;
+import fr.isima.ejbadass.exception.MultiplePreferedImplementationFoundException;
+import fr.isima.ejbadass.exception.NoImplementationFoundException;
 
 public class BSingletonManager {
 
