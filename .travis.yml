@@ -11,7 +11,7 @@ deploy:
   provider: releases
   name: ejbadass-api
   tag_name: ejbadass-api
-  body: Strong implementation of an EJB container.
+  body: "Strong implementation of an EJB container."
   draft: false
   api_key:
     secure: vxf38JboNsmqaEaz9oqs3bVGo9EvimGW/nKqVpBNhkCi5Dvy5dTgvO2UbZhqg+mUUnQv1VQ70nOO5UqUCJUR2rXE5dLG0QGG8zj/n4QgdAtvT2lyadAWbtcgT2ipTCNFsGdD9ne9AoT+7WpEHsSTw0dSnGtx974itX3COnldV7fdt1j2/P3GptWI7vK9g7OjfugWMdkOZJRqc9oYR47+yWhnttlZRfxMVkql17e9j65TuhAwlBl7GRnUgRyeCo/dukTM3t9Qm66m7unhGRTPHM0fsDRJhqzffu/tlQGDgQIp/RxQHC8rTpEXRka11DSRV0jATzRbCAuDpAQyiZZQu4nrisRpCbc/B9I2/X+uEnXOTF7XRJBbf/BQmmcdDTQydoQEzNBXuacBc43kPznI/KndLx9wqGsQeJY+ChN+IaLRO1+LIeueHOdquoAf7eUNoxehGvfJi9dYwO3y6Yh+i6K6iZ8xsfXwjX9RII7xLg8ET2y1DHzh/afrCgUne3vJUEnNOb5Y/UIQgf/Fn+y4iheJmmSIfNiVdBKk7zVj6E+h1n/bb+ufg1cMzYC8AM4L5bPcAMD3d+VsjCQPx4b49pXORl2mn1h6/k5L024lRycl2D8OeL+/SL15s3JfJ3NBWLO3UN10ZF//E6xdhFaUjYfRp4kHrdlFar+3D71scRQ=
@@ -22,4 +22,3 @@ deploy:
   skip_cleanup: true
   on:
     repo: EJBadass/ejbadass-api
-    tags: false
