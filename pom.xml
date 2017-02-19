@@ -2,9 +2,8 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>EJBadass</groupId>
   <artifactId>EJBadass</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>EJBadass</name>
-  <description>Strong implementation of an EJB container</description>
+  <name>EJBadass API</name>
+  <description>Strong implementation of an EJB container.</description>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -25,4 +24,10 @@
   		<version>0.9.10</version>
   	</dependency>
   </dependencies>
+  <organization>
+  	<name>EJBadass</name>
+  	<url>https://github.com/EJBadass</url>
+  </organization>
+  <version>1.0.0</version>
+  <url>https://github.com/EJBadass/ejbadass-api</url>
 </project>
