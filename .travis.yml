@@ -10,7 +10,7 @@ after_success:
 deploy:
   provider: releases
   name: ejbadass-api
-  tag_name: ejbadass-api
+  tag_name: 1.0.1
   body: "Strong implementation of an EJB container."
   draft: false
   api_key:
