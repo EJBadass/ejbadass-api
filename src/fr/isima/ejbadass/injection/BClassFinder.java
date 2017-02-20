@@ -14,7 +14,7 @@ public class BClassFinder {
 	
 	public static Class<?> find(Class<?> f) throws InstantiationException, IllegalAccessException, NoImplementationFoundException, MultipleImplementationFoundException, MultiplePreferedImplementationFoundException {
 		Class<?> res = null;
-		Reflections reflections = new Reflections("");
+		Reflections reflections = new Reflections("fr.isima");
 		
 		if(f.isInterface()) {
 			Set<?> possibilities = reflections.getSubTypesOf(f);

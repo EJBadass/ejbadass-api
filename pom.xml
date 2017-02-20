@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ejbadass</groupId>
   <artifactId>ejbadass-api</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
   <description>Strong implementation of an EJB container.</description>
   <properties>
     <jdk.version>1.8</jdk.version>
