@@ -20,23 +20,23 @@ public class BInvocationHandler implements InvocationHandler {
 		Object result = null;							// result of method
 		
 		if(cls!=null) {
+			
 			if(getInstance()==null)
 				setInstance(BObjectFactory.createInstance(cls));	// create object
+			
 			if(getInstance()!=null) {
+				HashSet<Class<?>> interceptorClasses = BBehaviourManager.check(cls, method); 	// check behaviour and get interceptors
+				Set<IInterceptor> interceptors = new HashSet<>();	// creation of interceptors
 				
-				// check behaviour and get interceptors
-				HashSet<Class<?>> interceptorClasses = BBehaviourManager.check(cls, method); 
-				// creation of interceptors
-				Set<IInterceptor> interceptors = new HashSet<>();
-				for (Class<?> intClass : interceptorClasses) {
+				for (Class<?> intClass : interceptorClasses)
 					interceptors.add((IInterceptor) BObjectFactory.createInstance(intClass));
-				}
 				
 				BInterceptorChain respChain = (BInterceptorChain) BObjectFactory.createInstance(BInterceptorChain.class);
 				respChain.buildChain(interceptors);
 				
 				result = respChain.proceed(getInstance(), method, args);
 			}
+			
 		}
 		return result;
 	}

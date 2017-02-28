@@ -8,21 +8,20 @@ import fr.isima.ejbadass.annotation.Behaviour;
 
 public class BBehaviourManager {
 
-	public static HashSet<Class<?>> check(Class<?> cls, Method method) {
+	public static HashSet<Class<?>> check(Class<?> cls, Method method) throws Exception {
+		
 		HashSet<Class<?>> classes = new HashSet<>();
-		for (Annotation a : cls.getDeclaredAnnotations()) {
-			Behaviour[] ans = a.annotationType().getDeclaredAnnotationsByType(Behaviour.class);
-			for(Behaviour b : ans) {
+		
+		for (Annotation a : cls.getDeclaredAnnotations())
+			for(Behaviour b : a.annotationType().getAnnotationsByType(Behaviour.class))
 				classes.add(b.interceptor());
-			}
-		}
-		for (Annotation a : method.getAnnotations()) {
-			Behaviour[] ans = a.annotationType().getDeclaredAnnotationsByType(Behaviour.class);
-			for(Behaviour b : ans) {
+		
+		for (Annotation a : cls.getMethod(method.getName(), method.getParameterTypes()).getDeclaredAnnotations())
+			for(Behaviour b : a.annotationType().getDeclaredAnnotationsByType(Behaviour.class))
 				classes.add(b.interceptor());
-			}
-		}
-		return classes;		
+		
+		return classes;	
+		
 	}
 	
 }

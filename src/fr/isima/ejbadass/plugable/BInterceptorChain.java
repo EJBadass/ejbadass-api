@@ -1,6 +1,5 @@
 package fr.isima.ejbadass.plugable;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
 
@@ -24,7 +23,7 @@ public class BInterceptorChain {
 			previous.setNext(new BExecutionInterceptor()); 
 	}
 
-	public Object proceed(Object instance, Method method, Object[] args) throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+	public Object proceed(Object instance, Method method, Object[] args) throws Exception {
 		return chain.proceed(instance, method, args);
 	}
 	
